@@ -1,0 +1,14 @@
+{
+  "author": "bennyKok <https://www.bennykok.com> (https://www.bennykok.com)",
+  "name": "com.blaze.dialogue",
+  "displayName": "Blaze Dialogue",
+  "version": "1.0.1",
+  "unity": "2019.3",
+  "type": "library",
+  "license": "MIT",
+  "description": "Lightweight dialogue system",
+  "dependencies": {
+    "com.unity.textmeshpro": "2.0.1",
+    "com.blaze.property": "1.0.1"
+  }
+}
