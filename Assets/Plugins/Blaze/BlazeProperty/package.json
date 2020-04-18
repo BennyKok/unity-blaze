@@ -4,6 +4,7 @@
     "displayName": "Blaze Property",
     "version": "1.0.0",
     "unity": "2019.3",
+    "type": "library",
     "license": "MIT",
-    "description": ""
+    "description": "Smart properties with data binding, events, save/load functions for unity"
 }
