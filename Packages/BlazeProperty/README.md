@@ -1,4 +1,7 @@
 # unity-blaze-property
+![GitHub](https://img.shields.io/github/license/BennyKok/unity-blaze)
+[![openupm](https://img.shields.io/npm/v/com.blaze.property?label=blaze-property&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.blaze.property/)
+
 Smart properties with data binding, events, save/load functions for unity
 
 ## Concept
