@@ -20,10 +20,6 @@ The idea is to eliminate the boilerplate code to reference and update UI compone
 ## Preview
 ![inspector](https://i.imgur.com/EeLOmLo.gif)
 
-Decalare like normal variable in MonoBehaviour
-<br />
-![inspector](https://i.imgur.com/ZYBIFus.png)
-
 ## General Properties
 | Property | Databind Supported Target | Value Type | Description |
 | --- | --- | --- | --- |
@@ -40,7 +36,22 @@ Decalare like normal variable in MonoBehaviour
 | `ButtonProperty` | `Button` | `UnityAction` | Auto bind the `UnityAction` to the `Button` target during databind, code initialization required. |
 
 ## Databind use case
-When dealing with a list of data, most of the case is with `ScriptableObject`, and probably you have to create a UI prefab and instance it in a for loop and inject the data into UI component, in this case, `PrefabListProperty` will handle it automatcally, and the DataBind logic will auto bind the GameObject with the same name as the defined variable in your data class.
+When dealing with a list of data, most of the time is with `ScriptableObject`, and probably you have to create a UI prefab and instance it in a for loop and inject the data into individual UI component, in this case, `PrefabListProperty` will handle it automatcally, and the DataBind logic will auto bind the GameObject with the same name as the defined variable in your data class.
 
-- e.g. `public FloatProperty hp;` will bind to a GameObject named `hp`'s `TextMeshProUGUI`
+- e.g. `public FloatProperty hp;` will bind to a GameObject named `hp`'s `TextMeshProUGUI` component
+
+## How to Help
+If you're interested in helping or using this package, feel free to join the discord channel
+<br/>
+[Discord](https://discord.gg/NhRpw4g)
+
+## License
+MIT License
+
+## Explore
+Feel free to check out some of my free assets.
+<br/>
+[Asset Store](https://assetstore.unity.com/publishers/28510)
+<br/>
+[BennyKok](https://bennykok.com)
 
