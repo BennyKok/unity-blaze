@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine.UIElements;
 using System;
 
-namespace Blaze.Property
+namespace Blaze.Property.Editor
 {
     public class TextBasePropertyDrawer : BasePropertyDrawer
     {

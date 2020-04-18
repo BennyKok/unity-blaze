@@ -5,14 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UIElements;
 
-namespace Blaze.Property
+namespace Blaze.Property.Editor
 {
-    [CustomPropertyDrawer(typeof(StringProperty))]
-    public class StringPropertyDrawer : TextBasePropertyDrawer
+    [CustomPropertyDrawer(typeof(BoolProperty))]
+    public class BoolPropertyDrawer : TextBasePropertyDrawer
     {
         public override void InitTab(SerializedProperty property, List<PropertyTab> tabs)
         {
             base.InitTab(property, tabs);
+
+            tabs[0].contents.Add(new ItemContent(property, ItemType.Property, "yes"));
+            tabs[0].contents.Add(new ItemContent(property, ItemType.Property, "no"));
 
             tabs[2].contents.Add(
                 new ItemContent(ItemType.GUI)
@@ -22,7 +25,7 @@ namespace Blaze.Property
                     guiDrawCallback = (rect) =>
                     {
                         EditorGUI.BeginDisabledGroup(true);
-                        EditorGUI.TextField(rect, PlayerPrefs.GetString(property.FindPropertyRelative("key").stringValue));
+                        EditorGUI.TextField(rect, PlayerPrefs.GetInt(property.FindPropertyRelative("key").stringValue) != 0 ? "True" : "False");
                         EditorGUI.EndDisabledGroup();
                     }
                 }

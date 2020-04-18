@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-namespace Blaze.Property
+namespace Blaze.Property.Editor
 {
     public class BasePropertyDrawer : PropertyDrawer
     {

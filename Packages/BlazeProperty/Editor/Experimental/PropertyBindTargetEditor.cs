@@ -5,10 +5,10 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Blaze.Property
+namespace Blaze.Property.Editor
 {
     [CustomEditor(typeof(PropertyBindTarget))]
-    public class PropertyBinderEditor : Editor
+    public class PropertyBinderEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

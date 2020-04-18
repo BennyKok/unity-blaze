@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEditor.AnimatedValues;
 
-namespace Blaze.Property
+namespace Blaze.Property.Editor
 {
     [CustomPropertyDrawer(typeof(CollapsedEventAttribute))]
     [CustomPropertyDrawer(typeof(IntEvent))]

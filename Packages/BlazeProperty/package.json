@@ -1,0 +1,13 @@
+{
+  "author": "bennyKok <https://www.bennykok.com> (https://www.bennykok.com)",
+  "name": "com.blaze.property",
+  "displayName": "Blaze Property",
+  "version": "1.0.0",
+  "unity": "2019.3",
+  "type": "library",
+  "license": "MIT",
+  "description": "Smart properties with data binding, events, save/load functions for unity",
+  "dependencies": {
+    "com.unity.textmeshpro": "2.0.1"
+  }
+}
