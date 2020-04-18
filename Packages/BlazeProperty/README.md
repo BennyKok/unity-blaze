@@ -5,15 +5,20 @@ Smart properties with data binding, events, save/load functions for unity
 ![inspector](https://i.imgur.com/EeLOmLo.gif)
 
 Decalare like normal variable in MonoBehaviour
+<br />
 ![inspector](https://i.imgur.com/ZYBIFus.png)
 
-## Properties
-| Property | Databind Support Target | Value Type | Description |
+## General Properties
+| Property | Databind Supported Target | Value Type | Description |
 | --- | --- | --- | --- |
 | `BoolProperty` | `TextMeshProUGUI` | `bool` | |
 | `FloatProperty` | `TextMeshProUGUI` | `float` | |
 | `IntProperty` | `TextMeshProUGUI` | `int` | |
 | `StringProperty` | `TextMeshProUGUI` | `string` | |
+
+## Databind Specific Properties
+| Property | Databind Supported Target | Value Type | Description |
+| --- | --- | --- | --- |
 | `SpriteProperty` | `SpriteRenderer`, `Image` | `Sprite` | |
-| `PrefabListProperty` |  | `GameObject(Prefab)` | Auto instantiate a list of data and databind to the indivudal prefab instance |
-| `ButtonProperty` | `Button` | `UnityAction` | |
+| `PrefabListProperty` | `Transform` | `GameObject(Prefab)` | Auto instantiate a list of data and auto databind the indivudal prefab instance, code initialization required. |
+| `ButtonProperty` | `Button` | `UnityAction` | Auto bind the `UnityAction` to the `Button` target during databind, code initialization required. |
