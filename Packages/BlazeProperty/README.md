@@ -1,6 +1,9 @@
 # unity-blaze-property
 Smart properties with data binding, events, save/load functions for unity
 
+## Concept
+The idea is to eliminate the boilerplate code to reference and update UI component every time, with `BlazeProperty`, now also comes with persistence options with the default `PlayerPrefs` and `UnityEvent` callback options, hopefully to make coding much more fun and enjoyable in Unity.
+
 ## Features
 - **Smart Property for basic variable type**
 
@@ -13,6 +16,13 @@ Smart properties with data binding, events, save/load functions for unity
 - **Auto Reflection caching for Databind**
 
 - **Works with ScriptableObject**
+
+## Preview
+![inspector](https://i.imgur.com/EeLOmLo.gif)
+
+Decalare like normal variable in MonoBehaviour
+<br />
+![inspector](https://i.imgur.com/ZYBIFus.png)
 
 ## General Properties
 | Property | Databind Supported Target | Value Type | Description |
@@ -29,9 +39,8 @@ Smart properties with data binding, events, save/load functions for unity
 | `PrefabListProperty` | `Transform` | `GameObject(Prefab)` | Auto instantiate a list of data and auto databind the indivudal prefab instance, code initialization required. |
 | `ButtonProperty` | `Button` | `UnityAction` | Auto bind the `UnityAction` to the `Button` target during databind, code initialization required. |
 
-## Preview
-![inspector](https://i.imgur.com/EeLOmLo.gif)
+## Databind use case
+When dealing with a list of data, most of the case is with `ScriptableObject`, and probably you have to create a UI prefab and instance it in a for loop and inject the data into UI component, in this case, `PrefabListProperty` will handle it automatcally, and the DataBind logic will auto bind the GameObject with the same name as the defined variable in your data class.
 
-Decalare like normal variable in MonoBehaviour
-<br />
-![inspector](https://i.imgur.com/ZYBIFus.png)
+- e.g. `public FloatProperty hp;` will bind to a GameObject named `hp`'s `TextMeshProUGUI`
+
