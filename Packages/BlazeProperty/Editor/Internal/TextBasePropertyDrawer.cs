@@ -20,16 +20,16 @@ namespace Blaze.Property.Editor
             tab1.contents = new List<ItemContent>()
             {
                 new ItemContent(property, ItemType.HeaderButton, "UI Binding","Find",()=>{
-                    var attempt = GameObject.Find(property.displayName);
+                    var attempt = GameObject.Find(property.name);
 
-                    TMPro.TextMeshProUGUI temp;
-                    if (attempt && (temp = attempt.GetComponent<TMPro.TextMeshProUGUI>()))
+                    if (attempt)
                     {
-                        tab1.contents[1].property.objectReferenceValue = temp;
+                        tab1.contents[1].property.objectReferenceValue = attempt;
+                        Debug.Log("Bind (" + property.name + ")");
                     }
                     else
                     {
-                        Debug.LogWarning("Couldn't find any matched UI for (" + property.displayName + ")");
+                        Debug.LogWarning("Couldn't find any matched UI for (" + property.name + ")");
                     }
                 }){
                     enableCallback = ()=> !isEditingScriptableObject(property)
