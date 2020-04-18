@@ -44,7 +44,7 @@ When dealing with a list of data, most of the time is with `ScriptableObject`, a
 - e.g. `public FloatProperty hp;` will bind to a GameObject named `hp`'s `TextMeshProUGUI` component
 
 ## How to Help
-If you're interested in helping or using this package, feel free to join the discord channel
+If you're interested in helping or using Blaze, feel free to join the discord channel
 <br/>
 [Discord](https://discord.gg/NhRpw4g)
 
