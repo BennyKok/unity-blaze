@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Blaze.Dialogue
 {
-    [CreateAssetMenu(fileName = "Actor", menuName = "BlazeDialogue/Actor", order = 0)]
+    [CreateAssetMenu(fileName = "Actor", menuName = "Blaze/Dialogue/Actor", order = 4000)]
     public class Actor : ScriptableObject
     {
-        public Translatable actorName;
-        public SpriteProperty profilePicture;
+        public TranslatableProperty actorName;
+        public SpriteProperty icon;
     }
 }

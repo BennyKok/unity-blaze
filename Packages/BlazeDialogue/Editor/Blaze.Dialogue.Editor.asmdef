@@ -1,7 +1,8 @@
 {
     "name": "Blaze.Dialogue.Editor",
     "references": [
-        "Blaze.Dialogue"
+        "Blaze.Dialogue",
+        "Blaze.Property.Editor"
     ],
     "includePlatforms": [
         "Editor"

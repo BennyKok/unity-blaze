@@ -27,7 +27,7 @@ namespace Blaze.Dialogue.Editor
 
             EditorGUI.LabelField(new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight), label, EditorStyles.miniBoldLabel);
 
-            if (GUI.Button(new Rect(position.width - 15, position.y + EditorGUIUtility.singleLineHeight, 30, EditorGUIUtility.singleLineHeight * GetLineCount()), EditorGUIUtility.IconContent("_Popup")))
+            if (GUI.Button(new Rect(position.x + position.width - 30, position.y + EditorGUIUtility.singleLineHeight, 30, EditorGUIUtility.singleLineHeight * GetLineCount()), EditorGUIUtility.IconContent("_Popup")))
             {
                 showTranslation = !showTranslation;
             }

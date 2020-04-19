@@ -211,7 +211,9 @@ namespace Blaze.Property.Editor
 
             var valueProperty = property.FindPropertyRelative("value");
 
+            var tempName = label.text;
             EditorGUI.BeginProperty(position, label, property);
+            label.text = tempName;
 
             // position.y += verticalSpace * 2;
 
@@ -226,7 +228,7 @@ namespace Blaze.Property.Editor
 
             var tabX = 0f;
 
-            var toolBarRect = new Rect(localX + tabX, localY + EditorGUIUtility.singleLineHeight + verticalSpace + verticalSpace, localW, EditorGUIUtility.singleLineHeight);
+            var toolBarRect = new Rect(localX + tabX, localY + EditorGUI.GetPropertyHeight(valueProperty) + verticalSpace + verticalSpace, localW, EditorGUIUtility.singleLineHeight);
 
             EditorGUI.BeginChangeCheck();
             // var tempSkin = GUI.skin;
@@ -275,16 +277,18 @@ namespace Blaze.Property.Editor
             // }
 
             // - tabBtnWidth * allTabs.Count
-            var propertyRect = new Rect(localX, localY, localW, EditorGUIUtility.singleLineHeight);
+            var propertyRect = new Rect(localX, localY, localW, EditorGUI.GetPropertyHeight(valueProperty));
 
             // if (!allTabs.Any(x => x.visible.value))
+            label.text = tempName;
+            // Debug.Log(label.text);
             EditorGUI.PropertyField(propertyRect, valueProperty, label);
 
             GUI.EndGroup();
 
             subTitleVerticalSpace = EditorStyles.miniBoldLabel.CalcHeight(GUIContent.none, position.width);
 
-            var extraRectGroup = new Rect(position.x + verticalSpace * 2, position.y + EditorGUIUtility.singleLineHeight * 2 + verticalSpace * 4 + 8, position.width - verticalSpace * 4, EditorGUIUtility.singleLineHeight);
+            var extraRectGroup = new Rect(position.x + verticalSpace * 2, position.y + EditorGUIUtility.singleLineHeight + EditorGUI.GetPropertyHeight(valueProperty) + verticalSpace * 4 + 8, position.width - verticalSpace * 4, EditorGUIUtility.singleLineHeight);
             // extraRectGroup = EditorGUI.IndentedRect(extraRectGroup);
 
             var displayTab = allTabs[currentState.trackedEditItem];

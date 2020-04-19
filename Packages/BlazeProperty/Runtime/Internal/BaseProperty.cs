@@ -12,7 +12,7 @@ namespace Blaze.Property
     {
         public GameObject target;
 
-        private bool targetBinded;
+        private bool targetBound;
 
         //bool unBind
         public event Action<ResolveSate> onResolverUpdate;
@@ -35,9 +35,9 @@ namespace Blaze.Property
                 if (onResolverUpdate != null)
                     onResolverUpdate.Invoke(ResolveSate.Update);
 
-                if (!targetBinded && target)
+                if (!targetBound && target)
                 {
-                    targetBinded = true;
+                    targetBound = true;
                     BindListener(target);
                 }
             }
