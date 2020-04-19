@@ -14,12 +14,13 @@ namespace Blaze.Dialogue
         public class Item
         {
             public MultiLineTranslatable content;
-            public float duration;
+            public float delay = 1;
             public AudioClip clip;
             public bool useClipDuration;
             public Actor actor;
             public bool waitForAction;
-            public float chance;
+            [Range(0, 1)]
+            public float chance = 1;
 
             [CollapsedEvent]
             public UnityEvent onFinished;

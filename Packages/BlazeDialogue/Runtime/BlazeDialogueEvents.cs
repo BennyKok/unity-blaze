@@ -4,6 +4,7 @@ using Blaze.Property;
 
 namespace Blaze.Dialogue
 {
+    [AddComponentMenu("Blaze/Dialogue/Dialogue Events")]
     public class BlazeDialogueEvents : MonoBehaviour
     {
         [Header("Events")]
@@ -28,7 +29,8 @@ namespace Blaze.Dialogue
 
         public void TriggerAction()
         {
-            if (currentFocusDialogue){
+            if (currentFocusDialogue)
+            {
                 currentFocusDialogue.TriggerAction();
             }
         }

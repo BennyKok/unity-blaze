@@ -19,8 +19,8 @@ namespace Blaze.Dialogue.Editor
             var settings = AssetDatabase.LoadAssetAtPath<BlazeDialogueSettings>(BlazeDialogueSettings.settingsPath);
             if (settings == null)
             {
-                if (!Directory.Exists("Assets/Resources/"))
-                    Directory.CreateDirectory("Assets/Resources/");
+                if (!Directory.Exists(BlazeDialogueSettings.settingsFolderPath))
+                    Directory.CreateDirectory(BlazeDialogueSettings.settingsFolderPath);
 
                 settings = ScriptableObject.CreateInstance<BlazeDialogueSettings>();
                 AssetDatabase.CreateAsset(settings, BlazeDialogueSettings.settingsPath);
@@ -40,7 +40,7 @@ namespace Blaze.Dialogue.Editor
         [SettingsProvider]
         public static SettingsProvider CreateMyCustomSettingsProvider()
         {
-            var provider = new SettingsProvider("Project/Blaze/Translation", SettingsScope.Project)
+            var provider = new SettingsProvider("Project/Blaze/Dialogue", SettingsScope.Project)
             {
                 // Create the SettingsProvider and initialize its drawing (IMGUI) function in place:
                 guiHandler = (searchContext) =>

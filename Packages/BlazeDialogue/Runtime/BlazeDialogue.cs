@@ -5,22 +5,28 @@ using Blaze.Property;
 
 namespace Blaze.Dialogue
 {
+    [AddComponentMenu("Blaze/Dialogue/Dialogue")]
     public class BlazeDialogue : MonoBehaviour
     {
+        public enum DialogueTriggerType
+        {
+            OnStart, OnTrigger, OnCollision
+        }
+
         public Dialogue dialogue;
-        
+
+        public DialogueTriggerType triggerType;
+
+        public bool cancelDialogueOnExit;
+
+        public bool checkObjectTag;
+
+        public string targetObjectTag;
+
         [CollapsedEvent]
         public UnityEvent onFinished;
 
-        public bool playOnAwake;
-
         private bool receivedAction;
-
-        private void Start()
-        {
-            if (playOnAwake)
-                StartDialogue();
-        }
 
         public void StartDialogue()
         {
@@ -53,7 +59,15 @@ namespace Blaze.Dialogue
             events.onDialogueShow.Invoke();
             foreach (var item in dialogue.contents)
             {
-                events.onDialogueContent.Invoke(item.content);
+                //Out of luck, we skip this line
+                if (Random.value > item.chance)
+                    continue;
+
+                // events.onDialogueContent.Invoke(item.content);
+                var time = Time.time;
+                yield return StartCoroutine(TypeText(item.content));
+                var timeUsedForTyping = Time.time - time;
+
                 if (item.waitForAction)
                 {
                     yield return new WaitUntil(() => receivedAction == true);
@@ -61,12 +75,90 @@ namespace Blaze.Dialogue
                 }
                 else
                 {
-                    yield return new WaitForSeconds(item.duration);
+                    // if (item.delay - timeUsedForTyping > 0)
+                    yield return new WaitForSeconds(item.delay);
                 }
             }
             onFinished.Invoke();
             events.onVisibilityChanged.Invoke(false);
             events.onDialogueHide.Invoke();
+        }
+
+        public IEnumerator TypeText(string text, float delay = 0.1f)
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text.Substring(i, 1) == " ")
+                {
+                    continue;
+                }
+                BlazeDialogueEvents.Instance.onDialogueContent.Invoke(text.Substring(0, i + 1));
+                yield return new WaitForSeconds(delay);
+            }
+        }
+
+        /////////Lifecycle hook
+
+        private void Start()
+        {
+            if (triggerType == DialogueTriggerType.OnStart)
+                StartDialogue();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (triggerType == DialogueTriggerType.OnTrigger && MatchTag(other.gameObject))
+                StartDialogue();
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (triggerType == DialogueTriggerType.OnTrigger && MatchTag(other.gameObject))
+                StopDialogue();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (triggerType == DialogueTriggerType.OnTrigger && MatchTag(other.gameObject))
+                StartDialogue();
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (triggerType == DialogueTriggerType.OnTrigger && MatchTag(other.gameObject))
+                StopDialogue();
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (triggerType == DialogueTriggerType.OnCollision && MatchTag(other.gameObject))
+                StartDialogue();
+        }
+
+        private void OnCollisionExit(Collision other)
+        {
+            if (triggerType == DialogueTriggerType.OnCollision && MatchTag(other.gameObject))
+                StopDialogue();
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (triggerType == DialogueTriggerType.OnCollision && MatchTag(other.gameObject))
+                StartDialogue();
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (triggerType == DialogueTriggerType.OnCollision && MatchTag(other.gameObject))
+                StopDialogue();
+        }
+
+        public bool MatchTag(GameObject other)
+        {
+            if (!checkObjectTag)
+                return true;
+
+            return other.CompareTag(targetObjectTag);
         }
     }
 }

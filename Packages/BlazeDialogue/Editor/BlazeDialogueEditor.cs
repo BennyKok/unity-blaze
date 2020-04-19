@@ -24,9 +24,36 @@ namespace Blaze.Dialogue.Editor
             if (m_TreeView == null)
                 m_TreeView = new DialogueTreeView(m_TreeViewState, contentsProp);
 
-
             serializedObject.Update();
+
+
             EditorGUILayout.Space();
+
+            EditorGUILayout.LabelField("Trigger", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("triggerType"));
+            if (serializedObject.FindProperty("triggerType").enumValueIndex > 0)
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("checkObjectTag"));
+                if (serializedObject.FindProperty("checkObjectTag").boolValue)
+                {
+                    var tagProperty = serializedObject.FindProperty("targetObjectTag");
+                    EditorGUI.BeginChangeCheck();
+                    var temp = EditorGUILayout.TagField(tagProperty.stringValue);
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        tagProperty.stringValue = temp;
+                    }
+                }
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("cancelDialogueOnExit"));
+            }
+
+            EditorGUILayout.Space();
+
+            EditorGUILayout.LabelField("Events", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("onFinished"));
+
+            EditorGUILayout.Space();
+
             EditorGUILayout.LabelField("Dialogue", EditorStyles.boldLabel);
 
             using (new GUILayout.VerticalScope(EditorStyles.helpBox))
@@ -65,24 +92,20 @@ namespace Blaze.Dialogue.Editor
                 var item = contentsProp.GetArrayElementAtIndex(m_TreeView.GetSelection()[0]);
                 EditorGUILayout.PropertyField(item.FindPropertyRelative("content"));
                 EditorGUILayout.PropertyField(item.FindPropertyRelative("clip"));
-                EditorGUILayout.PropertyField(item.FindPropertyRelative("useClipDuration"));
-                EditorGUILayout.PropertyField(item.FindPropertyRelative("duration"));
-                EditorGUILayout.PropertyField(item.FindPropertyRelative("actor"));
                 EditorGUILayout.PropertyField(item.FindPropertyRelative("waitForAction"));
+                if (!item.FindPropertyRelative("waitForAction").boolValue)
+                {
+                    // EditorGUILayout.PropertyField(item.FindPropertyRelative("useClipDuration"));
+                    // if (!item.FindPropertyRelative("useClipDuration").boolValue)
+                        EditorGUILayout.PropertyField(item.FindPropertyRelative("delay"));
+                }
+                EditorGUILayout.PropertyField(item.FindPropertyRelative("actor"));
                 EditorGUILayout.PropertyField(item.FindPropertyRelative("chance"));
                 if (EditorGUI.EndChangeCheck())
                 {
                     m_TreeView.Reload();
                 }
             }
-            EditorGUILayout.Space();
-
-            EditorGUILayout.LabelField("Settings", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("playOnAwake"));
-            EditorGUILayout.Space();
-
-            EditorGUILayout.LabelField("Events", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("onFinished"));
 
             EditorGUILayout.Space();
 
