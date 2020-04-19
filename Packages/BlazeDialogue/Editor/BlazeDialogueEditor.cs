@@ -26,7 +26,6 @@ namespace Blaze.Dialogue.Editor
 
             serializedObject.Update();
 
-
             EditorGUILayout.Space();
 
             EditorGUILayout.LabelField("Trigger", EditorStyles.boldLabel);

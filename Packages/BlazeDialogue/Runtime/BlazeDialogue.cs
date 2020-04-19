@@ -17,6 +17,7 @@ namespace Blaze.Dialogue
 
         public DialogueTriggerType triggerType;
 
+
         public bool cancelDialogueOnExit;
 
         public bool checkObjectTag;
@@ -63,15 +64,27 @@ namespace Blaze.Dialogue
                 if (Random.value > item.chance)
                     continue;
 
-                // events.onDialogueContent.Invoke(item.content);
-                var time = Time.time;
-                yield return StartCoroutine(TypeText(item.content));
-                var timeUsedForTyping = Time.time - time;
+                events.onDialogueLineBegin.Invoke();
+                if (item.clip)
+                    events.onDialogueAudio.Invoke(item.clip);
+                if (events.useDefaultTypingEffect)
+                {
+                    var time = Time.time;
+                    yield return StartCoroutine(TypeText(item.content));
+                    var timeUsedForTyping = Time.time - time;
+                }
+                else
+                {
+                    events.onDialogueContent.Invoke(item.content);
+                }
+                events.onDialogueLineEnd.Invoke();
 
                 if (item.waitForAction)
                 {
+                    events.onDialogueActionShow.Invoke();
                     yield return new WaitUntil(() => receivedAction == true);
                     receivedAction = false;
+                    events.onDialogueActionHide.Invoke();
                 }
                 else
                 {
@@ -84,16 +97,16 @@ namespace Blaze.Dialogue
             events.onDialogueHide.Invoke();
         }
 
-        public IEnumerator TypeText(string text, float delay = 0.1f)
+        public IEnumerator TypeText(string text)
         {
             for (int i = 0; i < text.Length; i++)
             {
+                yield return new WaitForSeconds(BlazeDialogueEvents.Instance.typingEffectDelay);
                 if (text.Substring(i, 1) == " ")
                 {
                     continue;
                 }
                 BlazeDialogueEvents.Instance.onDialogueContent.Invoke(text.Substring(0, i + 1));
-                yield return new WaitForSeconds(delay);
             }
         }
 
