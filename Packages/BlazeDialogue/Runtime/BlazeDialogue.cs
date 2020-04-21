@@ -33,6 +33,8 @@ namespace Blaze.Dialogue
 
         private BlazeDialogueEvents events;
 
+        private bool dialogueShowing;
+
         public void StartDialogue()
         {
             if (targetEvents)
@@ -57,6 +59,7 @@ namespace Blaze.Dialogue
         public void StopDialogue()
         {
             StopCoroutine("StartDialogueCoroutine");
+            HandleDialogueFinish();
         }
 
         public void TriggerAction()
@@ -66,6 +69,7 @@ namespace Blaze.Dialogue
 
         public IEnumerator StartDialogueCoroutine()
         {
+            dialogueShowing = true;
             //the dialog should be displayed
             events.onVisibilityChanged.Invoke(true);
             events.onDialogueShow.Invoke();
@@ -110,9 +114,18 @@ namespace Blaze.Dialogue
                     yield return new WaitForSeconds(item.delay);
                 }
             }
+            HandleDialogueFinish();
+        }
+
+        private void HandleDialogueFinish()
+        {
+            if (!dialogueShowing) return;
+
             onFinished.Invoke();
             events.onVisibilityChanged.Invoke(false);
             events.onDialogueHide.Invoke();
+            events.onDialogueActionHide.Invoke();
+            dialogueShowing = false;
         }
 
         public IEnumerator TypeText(string text)
