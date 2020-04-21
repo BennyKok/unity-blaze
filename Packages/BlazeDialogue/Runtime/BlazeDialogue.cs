@@ -10,7 +10,7 @@ namespace Blaze.Dialogue
     {
         public enum DialogueTriggerType
         {
-            OnStart, OnTrigger, OnCollision
+            None, OnStart, OnTrigger, OnCollision
         }
 
         public Dialogue dialogue;

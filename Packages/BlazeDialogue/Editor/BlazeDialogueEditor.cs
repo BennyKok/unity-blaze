@@ -30,7 +30,7 @@ namespace Blaze.Dialogue.Editor
 
             EditorGUILayout.LabelField("Trigger", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("triggerType"));
-            if (serializedObject.FindProperty("triggerType").enumValueIndex > 0)
+            if (serializedObject.FindProperty("triggerType").enumValueIndex > 1)
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("checkObjectTag"));
                 if (serializedObject.FindProperty("checkObjectTag").boolValue)

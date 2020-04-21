@@ -735,7 +735,7 @@ MonoBehaviour:
       onFinished:
         m_PersistentCalls:
           m_Calls: []
-  triggerType: 0
+  triggerType: 1
   cancelDialogueOnExit: 0
   checkObjectTag: 0
   targetObjectTag: Player
