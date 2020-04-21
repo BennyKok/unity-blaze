@@ -1,6 +1,8 @@
 ## Unity Blaze 
 Blaze is a series of open source utils for Unity that i'm building around my projects to solve some common problems that I've encountered, so  you may probably find them useful too.
 
+[Changelog](/CHANGELOG.md)
+
 ## Blaze modules
 ![GitHub](https://img.shields.io/github/license/BennyKok/unity-blaze)
 [![openupm](https://img.shields.io/npm/v/com.blaze.property?label=blaze-property&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.blaze.property/)
