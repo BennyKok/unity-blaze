@@ -11,9 +11,11 @@ There's two main component you will need for the dialogue to work,
 - Dialogue
     - Which store all the dialogue content
     - Has dialogue trigger option (OnStart, OnTrigger, OnCollision)
+    
     ![inspector](https://i.imgur.com/IMLvXrN.png)
 - Dialogue Events 
     - Contains a list of `UnitEvent` for dialogue callback and bind to your custom dialogue UI
+    
     ![inspector](https://i.imgur.com/o8HNXjh.png)
 
 ## How to Help
