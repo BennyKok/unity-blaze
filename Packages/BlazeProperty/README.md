@@ -23,13 +23,40 @@ The idea is to eliminate the boilerplate code to reference and update UI compone
 ## Preview
 ![inspector](https://i.imgur.com/EeLOmLo.gif)
 
+## How to use
+Create an empty `MonoBehaviour` , implement your game logic, for the data you wish to have data bind functionality, event callback, easy save option, replace with `BoolProperty`, `FloatProperty`, `IntProperty`, `StringProperty`.. etc
+
+e.g. 
+```c#
+    public class TapCountGame : MonoBehaviour
+    {
+        //You will see a custom drawer appeared in the inspector, 
+        //which has 3 tab (UI, Event, Save)
+        public IntProperty tapCount;  
+
+        //To trigger the data bind on start
+        private void Start() {
+            tapCount.Value = tapCount;
+        }
+
+        //Triggered by UnityEvent in the UI button
+        public void Tap(int count)
+        {
+            //We increment the value,
+            //and this will triggered the data bind to 
+            //update the UI we bound in the inspector
+            tapCount.Value += count;
+        }
+    }
+```
+
 ## General Properties
-| Property | Databind Supported Target | Value Type | Description |
-| --- | --- | --- | --- |
-| `BoolProperty` | `TextMeshProUGUI` | `bool` | |
-| `FloatProperty` | `TextMeshProUGUI` | `float` | |
-| `IntProperty` | `TextMeshProUGUI` | `int` | |
-| `StringProperty` | `TextMeshProUGUI` | `string` | |
+| Property | Databind Supported Target | Value Type
+| --- | --- | --- |
+| `BoolProperty` | `TextMeshProUGUI` | `bool` |
+| `FloatProperty` | `TextMeshProUGUI` | `float` |
+| `IntProperty` | `TextMeshProUGUI` | `int` |
+| `StringProperty` | `TextMeshProUGUI` | `string` |
 
 ## Databind Specific Properties
 | Property | Databind Supported Target | Value Type | Description |

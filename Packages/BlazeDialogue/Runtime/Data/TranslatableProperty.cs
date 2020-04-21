@@ -12,7 +12,12 @@ namespace Blaze.Dialogue
 
         public override void Save(string key, Translatable value)
         {
-            
+
+        }
+
+        public static implicit operator string(TranslatableProperty dialogueString)
+        {
+            return dialogueString.Value;
         }
     }
 }

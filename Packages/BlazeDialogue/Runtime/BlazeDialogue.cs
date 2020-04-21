@@ -13,6 +13,8 @@ namespace Blaze.Dialogue
             None, OnStart, OnTrigger, OnCollision
         }
 
+        public BlazeDialogueEvents targetEvents;
+
         public Dialogue dialogue;
 
         public DialogueTriggerType triggerType;
@@ -29,14 +31,25 @@ namespace Blaze.Dialogue
 
         private bool receivedAction;
 
+        private BlazeDialogueEvents events;
+
         public void StartDialogue()
         {
-            if (!BlazeDialogueEvents.Instance)
+            if (targetEvents)
+            {
+                events = targetEvents;
+            }
+            else
+            {
+                events = BlazeDialogueEvents.Instance;
+            }
+
+            if (!events)
             {
                 Debug.LogError("BlazeDialogueEvents doesn't exist, the dialogue couldn't be played.");
                 return;
             }
-            BlazeDialogueEvents.Instance.currentFocusDialogue = this;
+            events.currentFocusDialogue = this;
             StopCoroutine("StartDialogueCoroutine");
             StartCoroutine("StartDialogueCoroutine");
         }
@@ -53,8 +66,6 @@ namespace Blaze.Dialogue
 
         public IEnumerator StartDialogueCoroutine()
         {
-            var events = BlazeDialogueEvents.Instance;
-
             //the dialog should be displayed
             events.onVisibilityChanged.Invoke(true);
             events.onDialogueShow.Invoke();
@@ -65,6 +76,13 @@ namespace Blaze.Dialogue
                     continue;
 
                 events.onDialogueLineBegin.Invoke();
+
+                if (item.actor)
+                {
+                    events.onActorName.Invoke(item.actor.actorName);
+                    events.onActorIcon.Invoke(item.actor.icon);
+                }
+
                 if (item.clip)
                     events.onDialogueAudio.Invoke(item.clip);
                 if (events.useDefaultTypingEffect)
@@ -101,12 +119,12 @@ namespace Blaze.Dialogue
         {
             for (int i = 0; i < text.Length; i++)
             {
-                yield return new WaitForSeconds(BlazeDialogueEvents.Instance.typingEffectDelay);
+                yield return new WaitForSeconds(events.typingEffectDelay);
                 if (text.Substring(i, 1) == " ")
                 {
                     continue;
                 }
-                BlazeDialogueEvents.Instance.onDialogueContent.Invoke(text.Substring(0, i + 1));
+                events.onDialogueContent.Invoke(text.Substring(0, i + 1));
             }
         }
 

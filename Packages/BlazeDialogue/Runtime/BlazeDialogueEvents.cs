@@ -8,6 +8,7 @@ namespace Blaze.Dialogue
     public class BlazeDialogueEvents : MonoBehaviour
     {
         [Header("Settings")]
+        public bool isGlobalEvents = true;
         public bool useDefaultTypingEffect = true;
         public float typingEffectDelay = 0.05f;
 
@@ -48,6 +49,14 @@ namespace Blaze.Dialogue
         public AudioEvent onDialogueAudio;
 
 
+        [Header("Actor")]
+
+        [CollapsedEvent]
+        public StringEvent onActorName;
+        [CollapsedEvent]
+        public SpriteEvent onActorIcon;
+
+
         [System.NonSerialized]
         public BlazeDialogue currentFocusDialogue;
 
@@ -55,7 +64,13 @@ namespace Blaze.Dialogue
 
         private void Awake()
         {
-            Instance = this;
+            if (isGlobalEvents)
+            {
+                if (Instance != null)
+                    Debug.LogWarning("Already has 1 BlazeDialogueEvents marked as isGlobalEvents");
+                else
+                    Instance = this;
+            }
         }
 
         public void TriggerAction()

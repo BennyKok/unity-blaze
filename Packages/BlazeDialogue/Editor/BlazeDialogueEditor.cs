@@ -49,6 +49,7 @@ namespace Blaze.Dialogue.Editor
             EditorGUILayout.Space();
 
             EditorGUILayout.LabelField("Events", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("targetEvents"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onFinished"));
 
             EditorGUILayout.Space();

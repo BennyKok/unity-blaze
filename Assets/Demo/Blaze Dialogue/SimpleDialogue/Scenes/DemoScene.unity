@@ -697,6 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518e19d10858f451aa69baa4be8820e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetEvents: {fileID: 0}
   dialogue:
     contents:
     - content:
@@ -1198,6 +1199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1a01cdc5ece42db803b616a2acd201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGlobalEvents: 1
   useDefaultTypingEffect: 1
   typingEffectDelay: 0.05
   onVisibilityChanged:
@@ -1294,6 +1296,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onDialogueAudio:
+    m_PersistentCalls:
+      m_Calls: []
+  onActorName:
+    m_PersistentCalls:
+      m_Calls: []
+  onActorIcon:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1763841923
