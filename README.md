@@ -13,6 +13,16 @@ Blaze is a series of open source utils for Unity that i'm building around my pro
 
 ![inspector](https://i.imgur.com/IMLvXrN.png)
 
+## Install Package
+
+The package is available on the [openupm registry](https://openupm.com). It's recommended to install it via [openupm-cli](https://github.com/openupm/openupm-cli).
+
+```
+openupm add com.blaze.property
+openupm add com.blaze.dialogue
+```
+
+
 ## How to Help
 If you're interested in helping or using Blaze, feel free to join the discord channel
 <br/>
