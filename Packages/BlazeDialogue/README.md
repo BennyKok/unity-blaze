@@ -1,5 +1,6 @@
 # unity-blaze-dialogue
 ![GitHub](https://img.shields.io/github/license/BennyKok/unity-blaze)
+[![openupm](https://img.shields.io/npm/v/com.blaze.dialogue?label=blaze-dialogue&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.blaze.dialogue/)
 
 Lightweight dialogue system
 

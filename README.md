@@ -9,6 +9,7 @@ Blaze is a series of open source utils for Unity that i'm building around my pro
 ![inspector](https://i.imgur.com/EeLOmLo.gif)
 
 ![GitHub](https://img.shields.io/github/license/BennyKok/unity-blaze)
+[![openupm](https://img.shields.io/npm/v/com.blaze.dialogue?label=blaze-dialogue&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.blaze.dialogue/)
 - [BlazeDialogue](/Packages/BlazeDialogue/README.md) (Lightweight dialogue system)
 
 ![inspector](https://i.imgur.com/IMLvXrN.png)
