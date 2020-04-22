@@ -1,0 +1,3 @@
+[submodule "Packages/BlazeTween"]
+	path = Packages/BlazeTween
+	url = https://github.com/BennyKok/unity-blaze-tween.git
