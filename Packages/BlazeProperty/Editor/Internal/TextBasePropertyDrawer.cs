@@ -15,7 +15,7 @@ namespace Blaze.Property.Editor
             base.InitTab(property, tabs);
 
             var tab1 = new PropertyTab();
-            tab1.icon = EditorGUIUtility.IconContent("Font Icon");
+            tab1.icon = new GUIContent(); //EditorGUIUtility.IconContent("Font Icon");
             tab1.icon.text = "UI";
             tab1.contents = new List<ItemContent>()
             {

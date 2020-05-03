@@ -6,6 +6,7 @@ using UnityEngine;
 public class TapCountGame : MonoBehaviour
 {
     public IntProperty tapCount;
+    public StringProperty testString;
 
     private void Start() {
         tapCount.Value = tapCount;

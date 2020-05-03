@@ -218,7 +218,7 @@ namespace Blaze.Property.Editor
             // position.y += verticalSpace * 2;
 
             var groupRect = new Rect(position.x, position.y + verticalSpace * 2, position.width, position.height - verticalSpace * 2);
-            GUI.BeginGroup(groupRect, EditorStyles.helpBox);
+            GUI.BeginGroup(groupRect, GUI.skin.box);
 
             var localX = 6;
             var localY = 4;
@@ -233,7 +233,22 @@ namespace Blaze.Property.Editor
             EditorGUI.BeginChangeCheck();
             // var tempSkin = GUI.skin;
             // GUI.skin = smallToolBarSkin;
-            var tempI = GUI.Toolbar(toolBarRect, currentState.editItem, allTabs.ConvertAll(x => x.icon.text).ToArray());
+            var tempI = currentState.editItem;
+            var style = new GUIStyle("MiniPopup");
+            //GUI.Toolbar(toolBarRect, currentState.editItem, allTabs.ConvertAll(x => x.icon.text).ToArray());
+            toolBarRect.width = 50;
+            toolBarRect.x += localW;
+            //+= localW - (toolBarRect.width + groupHorizontalSpace) * allTabs.Count + groupHorizontalSpace;
+            for (int i = allTabs.Count - 1; i >= 0; i--)
+            {
+                toolBarRect.width = style.CalcSize(allTabs[i].icon).x;
+                toolBarRect.x -= toolBarRect.width;
+                if (GUI.Button(toolBarRect, allTabs[i].icon, "MiniPopup"))
+                {
+                    tempI = i;
+                }
+                toolBarRect.x -= groupHorizontalSpace;
+            }
             // GUI.skin = tempSkin;
 
             if (EditorGUI.EndChangeCheck())

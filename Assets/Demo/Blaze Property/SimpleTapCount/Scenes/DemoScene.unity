@@ -571,6 +571,17 @@ MonoBehaviour:
     valueDecreased:
       m_PersistentCalls:
         m_Calls: []
+  testString:
+    target: {fileID: 0}
+    value: 
+    persistance: 0
+    key: 
+    targetText: {fileID: 0}
+    prefix: 
+    suffix: 
+    valueChanged:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!4 &1220734322
 Transform:
   m_ObjectHideFlags: 0
